@@ -16,8 +16,13 @@
 		F7DBF2E9163201C20094F570 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF2E8163201C20094F570 /* Default.png */; };
 		F7DBF2EB163201C20094F570 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF2EA163201C20094F570 /* Default@2x.png */; };
 		F7DBF2ED163201C20094F570 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF2EC163201C20094F570 /* Default-568h@2x.png */; };
-		F7DBF2F0163201C20094F570 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DBF2EF163201C20094F570 /* ViewController.m */; };
-		F7DBF2F3163201C20094F570 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF2F1163201C20094F570 /* ViewController.xib */; };
+		F7DBF2FF16320D740094F570 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2FE16320D740094F570 /* Security.framework */; };
+		F7DBF31616320DDF0094F570 /* CommLibiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF30216320DDF0094F570 /* CommLibiOS.a */; };
+		F7DBF31716320DDF0094F570 /* Communication Library for iOS User Guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF30416320DDF0094F570 /* Communication Library for iOS User Guide.pdf */; };
+		F7DBF31816320DDF0094F570 /* WeborbClient Class Reference.odt in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF30516320DDF0094F570 /* WeborbClient Class Reference.odt */; };
+		F7DBF31A16320E120094F570 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF31916320E120094F570 /* CFNetwork.framework */; };
+		F7DBF31D16320EF50094F570 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DBF31C16320EF50094F570 /* ViewController.m */; };
+		F7DBF32016320F470094F570 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF31E16320F470094F570 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,9 +39,29 @@
 		F7DBF2E8163201C20094F570 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F7DBF2EA163201C20094F570 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F7DBF2EC163201C20094F570 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F7DBF2EE163201C20094F570 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F7DBF2EF163201C20094F570 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F7DBF2F2163201C20094F570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		F7DBF2FE16320D740094F570 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F7DBF30216320DDF0094F570 /* CommLibiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = CommLibiOS.a; sourceTree = "<group>"; };
+		F7DBF30416320DDF0094F570 /* Communication Library for iOS User Guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Communication Library for iOS User Guide.pdf"; sourceTree = "<group>"; };
+		F7DBF30516320DDF0094F570 /* WeborbClient Class Reference.odt */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeborbClient Class Reference.odt"; sourceTree = "<group>"; };
+		F7DBF30716320DDF0094F570 /* BinaryCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryCodec.h; sourceTree = "<group>"; };
+		F7DBF30816320DDF0094F570 /* DEBUG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEBUG.h; sourceTree = "<group>"; };
+		F7DBF30916320DDF0094F570 /* IAttributeStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAttributeStore.h; sourceTree = "<group>"; };
+		F7DBF30A16320DDF0094F570 /* IClientSharedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IClientSharedObject.h; sourceTree = "<group>"; };
+		F7DBF30B16320DDF0094F570 /* IClientSharedObjectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IClientSharedObjectDelegate.h; sourceTree = "<group>"; };
+		F7DBF30C16320DDF0094F570 /* IPendingServiceCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPendingServiceCallback.h; sourceTree = "<group>"; };
+		F7DBF30D16320DDF0094F570 /* IPersistable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPersistable.h; sourceTree = "<group>"; };
+		F7DBF30E16320DDF0094F570 /* IRTMProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRTMProtocol.h; sourceTree = "<group>"; };
+		F7DBF30F16320DDF0094F570 /* IServiceCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IServiceCall.h; sourceTree = "<group>"; };
+		F7DBF31016320DDF0094F570 /* ISharedObjectListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISharedObjectListener.h; sourceTree = "<group>"; };
+		F7DBF31116320DDF0094F570 /* MemoryTicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryTicker.h; sourceTree = "<group>"; };
+		F7DBF31216320DDF0094F570 /* Responder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Responder.h; sourceTree = "<group>"; };
+		F7DBF31316320DDF0094F570 /* RTMPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMPClient.h; sourceTree = "<group>"; };
+		F7DBF31416320DDF0094F570 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
+		F7DBF31516320DDF0094F570 /* WeborbClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeborbClient.h; sourceTree = "<group>"; };
+		F7DBF31916320E120094F570 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F7DBF31B16320EF50094F570 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F7DBF31C16320EF50094F570 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F7DBF31F16320F470094F570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,9 +69,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7DBF31A16320E120094F570 /* CFNetwork.framework in Frameworks */,
+				F7DBF2FF16320D740094F570 /* Security.framework in Frameworks */,
 				F7DBF2D7163201C20094F570 /* UIKit.framework in Frameworks */,
 				F7DBF2D9163201C20094F570 /* Foundation.framework in Frameworks */,
 				F7DBF2DB163201C20094F570 /* CoreGraphics.framework in Frameworks */,
+				F7DBF31616320DDF0094F570 /* CommLibiOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +84,7 @@
 		F7DBF2C7163201C20094F570 = {
 			isa = PBXGroup;
 			children = (
+				F7DBF30116320DDF0094F570 /* CommLibiOS */,
 				F7DBF2DC163201C20094F570 /* Lion */,
 				F7DBF2D5163201C20094F570 /* Frameworks */,
 				F7DBF2D3163201C20094F570 /* Products */,
@@ -73,6 +102,8 @@
 		F7DBF2D5163201C20094F570 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7DBF31916320E120094F570 /* CFNetwork.framework */,
+				F7DBF2FE16320D740094F570 /* Security.framework */,
 				F7DBF2D6163201C20094F570 /* UIKit.framework */,
 				F7DBF2D8163201C20094F570 /* Foundation.framework */,
 				F7DBF2DA163201C20094F570 /* CoreGraphics.framework */,
@@ -85,9 +116,9 @@
 			children = (
 				F7DBF2E5163201C20094F570 /* AppDelegate.h */,
 				F7DBF2E6163201C20094F570 /* AppDelegate.m */,
-				F7DBF2EE163201C20094F570 /* ViewController.h */,
-				F7DBF2EF163201C20094F570 /* ViewController.m */,
-				F7DBF2F1163201C20094F570 /* ViewController.xib */,
+				F7DBF31B16320EF50094F570 /* ViewController.h */,
+				F7DBF31C16320EF50094F570 /* ViewController.m */,
+				F7DBF31E16320F470094F570 /* ViewController.xib */,
 				F7DBF2DD163201C20094F570 /* Supporting Files */,
 			);
 			path = Lion;
@@ -105,6 +136,47 @@
 				F7DBF2EC163201C20094F570 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F7DBF30116320DDF0094F570 /* CommLibiOS */ = {
+			isa = PBXGroup;
+			children = (
+				F7DBF30216320DDF0094F570 /* CommLibiOS.a */,
+				F7DBF30316320DDF0094F570 /* doc */,
+				F7DBF30616320DDF0094F570 /* include */,
+			);
+			path = CommLibiOS;
+			sourceTree = "<group>";
+		};
+		F7DBF30316320DDF0094F570 /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				F7DBF30416320DDF0094F570 /* Communication Library for iOS User Guide.pdf */,
+				F7DBF30516320DDF0094F570 /* WeborbClient Class Reference.odt */,
+			);
+			path = doc;
+			sourceTree = "<group>";
+		};
+		F7DBF30616320DDF0094F570 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F7DBF30716320DDF0094F570 /* BinaryCodec.h */,
+				F7DBF30816320DDF0094F570 /* DEBUG.h */,
+				F7DBF30916320DDF0094F570 /* IAttributeStore.h */,
+				F7DBF30A16320DDF0094F570 /* IClientSharedObject.h */,
+				F7DBF30B16320DDF0094F570 /* IClientSharedObjectDelegate.h */,
+				F7DBF30C16320DDF0094F570 /* IPendingServiceCallback.h */,
+				F7DBF30D16320DDF0094F570 /* IPersistable.h */,
+				F7DBF30E16320DDF0094F570 /* IRTMProtocol.h */,
+				F7DBF30F16320DDF0094F570 /* IServiceCall.h */,
+				F7DBF31016320DDF0094F570 /* ISharedObjectListener.h */,
+				F7DBF31116320DDF0094F570 /* MemoryTicker.h */,
+				F7DBF31216320DDF0094F570 /* Responder.h */,
+				F7DBF31316320DDF0094F570 /* RTMPClient.h */,
+				F7DBF31416320DDF0094F570 /* Types.h */,
+				F7DBF31516320DDF0094F570 /* WeborbClient.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,7 +234,9 @@
 				F7DBF2E9163201C20094F570 /* Default.png in Resources */,
 				F7DBF2EB163201C20094F570 /* Default@2x.png in Resources */,
 				F7DBF2ED163201C20094F570 /* Default-568h@2x.png in Resources */,
-				F7DBF2F3163201C20094F570 /* ViewController.xib in Resources */,
+				F7DBF31716320DDF0094F570 /* Communication Library for iOS User Guide.pdf in Resources */,
+				F7DBF31816320DDF0094F570 /* WeborbClient Class Reference.odt in Resources */,
+				F7DBF32016320F470094F570 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +249,7 @@
 			files = (
 				F7DBF2E3163201C20094F570 /* main.m in Sources */,
 				F7DBF2E7163201C20094F570 /* AppDelegate.m in Sources */,
-				F7DBF2F0163201C20094F570 /* ViewController.m in Sources */,
+				F7DBF31D16320EF50094F570 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,10 +264,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		F7DBF2F1163201C20094F570 /* ViewController.xib */ = {
+		F7DBF31E16320F470094F570 /* ViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F7DBF2F2163201C20094F570 /* en */,
+				F7DBF31F16320F470094F570 /* en */,
 			);
 			name = ViewController.xib;
 			sourceTree = "<group>";
@@ -257,6 +331,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lion/Lion-Prefix.pch";
 				INFOPLIST_FILE = "Lion/Lion-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/CommLibiOS\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -268,6 +346,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lion/Lion-Prefix.pch";
 				INFOPLIST_FILE = "Lion/Lion-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/CommLibiOS\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -292,6 +374,7 @@
 				F7DBF2F8163201C20094F570 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
