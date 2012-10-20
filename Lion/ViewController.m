@@ -9,11 +9,13 @@
 
 #import "ViewController.h"
 #import "BinaryCodec.h"
+#import "DEBUG.h"
 
 #define BARBUTTON(TITLE, SELECTOR) [[UIBarButtonItem alloc] initWithTitle:TITLE style:UIBarButtonItemStylePlain target:self action:SELECTOR]
 
 #define STATUS_PENDING 0x01
-
+//#define WOWZA_IP @"10.80.188.21"
+#define WOWZA_IP @"localhost"
 
 @implementation ViewController
 
@@ -127,9 +129,16 @@
 
 -(void)doConnect:(id)sender {				
     
-    NSString *protocol = (isRTMPS) ? @"rtmps://%@:%d/%@" : @"rtmp://%@:%d/%@";
-    NSString *url = [NSString stringWithFormat:protocol, hostTextField.text, [portTextField.text intValue], appTextField.text];
-    
+    //NSString *protocol = (isRTMPS) ? @"rtmps://%@:%d/%@" : @"rtmp://%@:%d/%@";
+    //NSString *url = [NSString stringWithFormat:protocol, hostTextField.text, [portTextField.text intValue], appTextField.text];
+    NSString *url = nil;
+
+#ifdef __i386__
+    url = @"rtmp://localhost:1935/live";
+#else
+    url = @"rtmp://192.168.19.48:1935/live";
+#endif
+
     if (socket)
         [socket connect:url];
     else {
@@ -161,6 +170,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [DebLog setIsActive:YES];
 
     self.title = @"Home";
     //
@@ -199,7 +209,7 @@
     hostTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 	hostTextField.returnKeyType = UIReturnKeyDone;
 	hostTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-	hostTextField.text = @"localhost";
+	hostTextField.text = WOWZA_IP;
 	//hostTextField.text = @"10.0.1.2";
 	hostTextField.delegate = self;
 	[self.view addSubview:hostTextField];
@@ -295,8 +305,7 @@
 -(void)resultReceived:(id <IServiceCall>)call {
     
     int status = [call getStatus];
-    if (status != STATUS_PENDING) // this call is not a server response
-        return;
+    
     
     NSString *method = [call getServiceMethodName];
     NSArray *args = [call getArguments];
@@ -304,6 +313,9 @@
     id result = (args.count) ? [args objectAtIndex:0] : nil;
     
     NSLog(@" $$$$$$ <IRTMPClientDelegate>> resultReceived <---- status=%d, invokeID=%d, method='%@' arguments=%@\n", status, invokeId, method, result);
+    
+    if (status != STATUS_PENDING) // this call is not a server response
+        return;
     
     [self showAlert:[NSString stringWithFormat:@"'%@': arguments = %@\n", method, result]];    
 }
