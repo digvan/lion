@@ -17,6 +17,16 @@
 		F7392C9E16371CCD002E035E /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9416371CCD002E035E /* libswresample.a */; };
 		F7392C9F16371CCD002E035E /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9516371CCD002E035E /* libswscale.a */; };
 		F7392CA016371CCD002E035E /* MediaLibiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9616371CCD002E035E /* MediaLibiOS.a */; };
+		F7392CAF163747CE002E035E /* PublisherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7392CAE163747CE002E035E /* PublisherViewController.m */; };
+		F7392CB216374978002E035E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392CB116374978002E035E /* AudioToolbox.framework */; };
+		F7392CB41637497F002E035E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392CB31637497F002E035E /* AVFoundation.framework */; };
+		F7392CB616374988002E035E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392CB516374988002E035E /* CoreFoundation.framework */; };
+		F7392CB816374991002E035E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392CB716374991002E035E /* CoreMedia.framework */; };
+		F7392CBA16374998002E035E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392CB916374998002E035E /* CoreVideo.framework */; };
+		F7392CBC163749AD002E035E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392CBB163749AD002E035E /* libz.dylib */; };
+		F7392CC916374D6A002E035E /* PublisherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7392CC816374D6A002E035E /* PublisherViewController.xib */; };
+		F7392CD016374DDE002E035E /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7392CCF16374DDE002E035E /* PlayerViewController.xib */; };
+		F7392CD116374F37002E035E /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7392CC616374D1C002E035E /* PlayerViewController.m */; };
 		F7DBF2D7163201C20094F570 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2D6163201C20094F570 /* UIKit.framework */; };
 		F7DBF2D9163201C20094F570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2D8163201C20094F570 /* Foundation.framework */; };
 		F7DBF2DB163201C20094F570 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2DA163201C20094F570 /* CoreGraphics.framework */; };
@@ -31,8 +41,8 @@
 		F7DBF31716320DDF0094F570 /* Communication Library for iOS User Guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF30416320DDF0094F570 /* Communication Library for iOS User Guide.pdf */; };
 		F7DBF31816320DDF0094F570 /* WeborbClient Class Reference.odt in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF30516320DDF0094F570 /* WeborbClient Class Reference.odt */; };
 		F7DBF31A16320E120094F570 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF31916320E120094F570 /* CFNetwork.framework */; };
-		F7DBF31D16320EF50094F570 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DBF31C16320EF50094F570 /* ViewController.m */; };
-		F7DBF32016320F470094F570 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF31E16320F470094F570 /* ViewController.xib */; };
+		F7DBF31D16320EF50094F570 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DBF31C16320EF50094F570 /* HomeViewController.m */; };
+		F7DBF32016320F470094F570 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7DBF31E16320F470094F570 /* HomeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +60,19 @@
 		F7392C9416371CCD002E035E /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswresample.a; sourceTree = "<group>"; };
 		F7392C9516371CCD002E035E /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswscale.a; sourceTree = "<group>"; };
 		F7392C9616371CCD002E035E /* MediaLibiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = MediaLibiOS.a; sourceTree = "<group>"; };
+		F7392CAE163747CE002E035E /* PublisherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublisherViewController.m; sourceTree = "<group>"; };
+		F7392CB01637480A002E035E /* StreamConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StreamConfig.h; sourceTree = "<group>"; };
+		F7392CB116374978002E035E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F7392CB31637497F002E035E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F7392CB516374988002E035E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		F7392CB716374991002E035E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F7392CB916374998002E035E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F7392CBB163749AD002E035E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F7392CC516374D1C002E035E /* PlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		F7392CC616374D1C002E035E /* PlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		F7392CC716374D6A002E035E /* PublisherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublisherViewController.h; sourceTree = "<group>"; };
+		F7392CC816374D6A002E035E /* PublisherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublisherViewController.xib; sourceTree = "<group>"; };
+		F7392CCF16374DDE002E035E /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 		F7DBF2D2163201C20094F570 /* Lion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DBF2D6163201C20094F570 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F7DBF2D8163201C20094F570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,9 +106,9 @@
 		F7DBF31416320DDF0094F570 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		F7DBF31516320DDF0094F570 /* WeborbClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeborbClient.h; sourceTree = "<group>"; };
 		F7DBF31916320E120094F570 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		F7DBF31B16320EF50094F570 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F7DBF31C16320EF50094F570 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F7DBF31F16320F470094F570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		F7DBF31B16320EF50094F570 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		F7DBF31C16320EF50094F570 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		F7DBF31F16320F470094F570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HomeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +116,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7DBF31A16320E120094F570 /* CFNetwork.framework in Frameworks */,
+				F7392CBC163749AD002E035E /* libz.dylib in Frameworks */,
 				F7DBF2FF16320D740094F570 /* Security.framework in Frameworks */,
+				F7392CBA16374998002E035E /* CoreVideo.framework in Frameworks */,
+				F7392CB816374991002E035E /* CoreMedia.framework in Frameworks */,
+				F7392CB616374988002E035E /* CoreFoundation.framework in Frameworks */,
+				F7392CB41637497F002E035E /* AVFoundation.framework in Frameworks */,
+				F7392CB216374978002E035E /* AudioToolbox.framework in Frameworks */,
+				F7DBF31A16320E120094F570 /* CFNetwork.framework in Frameworks */,
 				F7DBF2D7163201C20094F570 /* UIKit.framework in Frameworks */,
 				F7DBF2D9163201C20094F570 /* Foundation.framework in Frameworks */,
 				F7DBF2DB163201C20094F570 /* CoreGraphics.framework in Frameworks */,
@@ -172,6 +201,12 @@
 		F7DBF2D5163201C20094F570 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7392CBB163749AD002E035E /* libz.dylib */,
+				F7392CB916374998002E035E /* CoreVideo.framework */,
+				F7392CB716374991002E035E /* CoreMedia.framework */,
+				F7392CB516374988002E035E /* CoreFoundation.framework */,
+				F7392CB31637497F002E035E /* AVFoundation.framework */,
+				F7392CB116374978002E035E /* AudioToolbox.framework */,
 				F7DBF31916320E120094F570 /* CFNetwork.framework */,
 				F7DBF2FE16320D740094F570 /* Security.framework */,
 				F7DBF2D6163201C20094F570 /* UIKit.framework */,
@@ -184,11 +219,18 @@
 		F7DBF2DC163201C20094F570 /* Lion */ = {
 			isa = PBXGroup;
 			children = (
+				F7392CB01637480A002E035E /* StreamConfig.h */,
 				F7DBF2E5163201C20094F570 /* AppDelegate.h */,
 				F7DBF2E6163201C20094F570 /* AppDelegate.m */,
-				F7DBF31B16320EF50094F570 /* ViewController.h */,
-				F7DBF31C16320EF50094F570 /* ViewController.m */,
-				F7DBF31E16320F470094F570 /* ViewController.xib */,
+				F7DBF31B16320EF50094F570 /* HomeViewController.h */,
+				F7DBF31C16320EF50094F570 /* HomeViewController.m */,
+				F7DBF31E16320F470094F570 /* HomeViewController.xib */,
+				F7392CC716374D6A002E035E /* PublisherViewController.h */,
+				F7392CAE163747CE002E035E /* PublisherViewController.m */,
+				F7392CC816374D6A002E035E /* PublisherViewController.xib */,
+				F7392CC516374D1C002E035E /* PlayerViewController.h */,
+				F7392CC616374D1C002E035E /* PlayerViewController.m */,
+				F7392CCF16374DDE002E035E /* PlayerViewController.xib */,
 				F7DBF2DD163201C20094F570 /* Supporting Files */,
 			);
 			path = Lion;
@@ -306,9 +348,11 @@
 				F7DBF2ED163201C20094F570 /* Default-568h@2x.png in Resources */,
 				F7DBF31716320DDF0094F570 /* Communication Library for iOS User Guide.pdf in Resources */,
 				F7DBF31816320DDF0094F570 /* WeborbClient Class Reference.odt in Resources */,
-				F7DBF32016320F470094F570 /* ViewController.xib in Resources */,
+				F7DBF32016320F470094F570 /* HomeViewController.xib in Resources */,
 				F7392C9716371CCD002E035E /* Building Media Stream Apps.docx in Resources */,
 				F7392C9816371CCD002E035E /* Media Library for iOS User Guide.docx in Resources */,
+				F7392CC916374D6A002E035E /* PublisherViewController.xib in Resources */,
+				F7392CD016374DDE002E035E /* PlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,9 +363,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7392CD116374F37002E035E /* PlayerViewController.m in Sources */,
 				F7DBF2E3163201C20094F570 /* main.m in Sources */,
 				F7DBF2E7163201C20094F570 /* AppDelegate.m in Sources */,
-				F7DBF31D16320EF50094F570 /* ViewController.m in Sources */,
+				F7DBF31D16320EF50094F570 /* HomeViewController.m in Sources */,
+				F7392CAF163747CE002E035E /* PublisherViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,12 +382,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		F7DBF31E16320F470094F570 /* ViewController.xib */ = {
+		F7DBF31E16320F470094F570 /* HomeViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F7DBF31F16320F470094F570 /* en */,
 			);
-			name = ViewController.xib;
+			name = HomeViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -7,9 +7,12 @@
 //  Modified by T.Selim Bebek
 
 
-#import "ViewController.h"
+#import "HomeViewController.h"
 #import "BinaryCodec.h"
 #import "DEBUG.h"
+#import "StreamConfig.h"
+#import "PublisherViewController.h"
+#import "PlayerViewController.h"
 
 #define BARBUTTON(TITLE, SELECTOR) [[UIBarButtonItem alloc] initWithTitle:TITLE style:UIBarButtonItemStylePlain target:self action:SELECTOR]
 
@@ -17,7 +20,7 @@
 //#define WOWZA_IP @"10.80.188.21"
 #define WOWZA_IP @"localhost"
 
-@implementation ViewController
+@implementation HomeViewController
 
 #pragma mark -
 #pragma mark Private Methods 
@@ -75,74 +78,28 @@
 -(void)socketConnected {
     
     state = 1;
-    
-    self.title = [NSString stringWithFormat:@"%@:%@/%@", hostTextField.text, portTextField.text, appTextField.text];
-    self.navigationItem.rightBarButtonItem = BARBUTTON(@"Disconnect", @selector(doDisconnect:));
-    
-    btnProtocol.hidden = YES;
-    protocolLabel.hidden = YES;
-    portLabel.hidden = YES;
-    appLabel.hidden = YES;
-    hostTextField.hidden = YES;
-    portTextField.hidden = YES;
-    appTextField.hidden = YES;
-    
-    infoImage.hidden = YES;
-    btnInfo.hidden = YES;
-    
-    btnEchoInt.hidden = NO;
-    btnEchoFloat.hidden = NO;
-    btnEchoString.hidden = NO;
-    btnEchoStringArray.hidden = NO;
-    btnEchoIntArray.hidden = NO;
-    btnEchoArrayList.hidden = NO;
-    btnEchoByteArray.hidden = NO;
+    self.navigationItem.rightBarButtonItem = BARBUTTON(@"Disconnect", @selector(doDisconnect:));    
+    btnEchoInt.enabled = YES;
+    btnPublish.enabled = YES;
+    btnPlay.enabled = YES;
 }
 
 -(void)socketDisconnected {
     
     state = 0;
-    
 	self.title = @"Home";
 	self.navigationItem.rightBarButtonItem = BARBUTTON(@"Connect", @selector(doConnect:));
-    
-    btnProtocol.hidden = NO;
-    protocolLabel.hidden = NO;
-    portLabel.hidden = NO;
-    appLabel.hidden = NO;
-    hostTextField.hidden = NO;
-    portTextField.hidden = NO;
-    appTextField.hidden = NO;
-    
-    infoImage.hidden = YES;
-    [btnInfo setTitle:@"Info" forState:UIControlStateNormal];
-    btnInfo.hidden = NO;
-    
-    btnEchoInt.hidden = YES;
-    btnEchoFloat.hidden = YES;
-    btnEchoString.hidden = YES;
-    btnEchoStringArray.hidden = YES;
-    btnEchoIntArray.hidden = YES;
-    btnEchoArrayList.hidden = YES;
-    btnEchoByteArray.hidden = YES;
+    btnEchoInt.enabled = NO;
+    btnPublish.enabled = NO;
+    btnPlay.enabled = NO;
 }
 
 -(void)doConnect:(id)sender {				
     
-    //NSString *protocol = (isRTMPS) ? @"rtmps://%@:%d/%@" : @"rtmp://%@:%d/%@";
-    //NSString *url = [NSString stringWithFormat:protocol, hostTextField.text, [portTextField.text intValue], appTextField.text];
-    NSString *url = nil;
-
-#ifdef __i386__
-    url = @"rtmp://localhost:1935/Live_Broadcast";
-#else
-    url = @"rtmp://192.168.112.108:1935/Live_Broadcast";
-#endif
-
     if (socket)
-        [socket connect:url];
+        [socket connect:BROADCAST_URL];
     else {
-        socket = [[RTMPClient alloc] init:url];
+        socket = [[RTMPClient alloc] init:BROADCAST_URL];
         socket.delegate = self;
         [socket connect];
     }
@@ -160,8 +117,21 @@
 
 -(void)doProtocol {
     isRTMPS = (isRTMPS)?NO:YES;    
-    [btnProtocol setTitle:(isRTMPS)?@"rtmps":@"rtmp" forState:UIControlStateNormal];
 }
+
+-(void)publish
+{
+    PublisherViewController* controller = [[PublisherViewController alloc] initWithNibName:@"PublishViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+-(void)play
+{
+    PlayerViewController* controller = [[PlayerViewController alloc] initWithNibName:@"PlayerViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -176,77 +146,34 @@
     //
 	self.navigationItem.rightBarButtonItem = BARBUTTON(@"Connect", @selector(doConnect:));
     
-	//button
-	btnProtocol = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	btnProtocol.frame = CGRectMake(0.0, 0.0, 50.0, 30.0);
-	btnProtocol.center = CGPointMake(35.0, 25.0);
-	btnProtocol.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    [btnProtocol setTitle:@"rtmp" forState:UIControlStateNormal];
-	[btnProtocol addTarget:self action:@selector(doProtocol) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:btnProtocol];
-    
-	//labels
-	protocolLabel = [[UILabel alloc] initWithFrame:CGRectMake(62.0, 10.0, 23.0, 30.0)];
-	protocolLabel.text = @"://";
-	[self.view addSubview:protocolLabel];
-	//[protocolLabel release];
-    
-	portLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 50.0, 5.0, 30.0)];
-	portLabel.text = @":";
-	[self.view addSubview:portLabel];
-	//[portLabel release];
-	
-	appLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.0, 90.0, 10.0, 30.0)];
-	appLabel.text = @"/";
-	[self.view addSubview:appLabel];
-	//[appLabel release];
-	
-	// textFields
-	hostTextField = [[UITextField alloc] initWithFrame:CGRectMake(80.0, 10.0, 235.0, 30.0)];
-	hostTextField.borderStyle = UITextBorderStyleRoundedRect;
-	hostTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-	hostTextField.placeholder = @"hostname or IP";
-    hostTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-	hostTextField.returnKeyType = UIReturnKeyDone;
-	hostTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-	hostTextField.text = WOWZA_IP;
-	//hostTextField.text = @"10.0.1.2";
-	hostTextField.delegate = self;
-	[self.view addSubview:hostTextField];
-	//[hostTextField release];
-	
-	portTextField = [[UITextField alloc] initWithFrame:CGRectMake(15.0, 50.0, 80.0, 30.0)];
-	portTextField.borderStyle = UITextBorderStyleRoundedRect;
-	portTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-	portTextField.placeholder = @"port";
-    portTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-	portTextField.returnKeyType = UIReturnKeyDone;
-	portTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-	portTextField.text = @"1935";
-	portTextField.delegate = self;
-	[self.view addSubview:portTextField];
-	//[portTextField release];
-	
-	appTextField = [[UITextField alloc] initWithFrame:CGRectMake(15.0, 90.0, 300.0, 30.0)];
-	appTextField.borderStyle = UITextBorderStyleRoundedRect;
-	appTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-	appTextField.placeholder = @"app";
-	appTextField.returnKeyType = UIReturnKeyDone;
-	appTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-	appTextField.text = @"live";
-	appTextField.delegate = self;
-	[self.view addSubview:appTextField];
-	//[appTextField release];
-	
 	//buttons
 	btnEchoInt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	btnEchoInt.frame = CGRectMake(0.0, 0.0, 300.0, 30.0);
-	btnEchoInt.center = CGPointMake(160.0, 30.0);
+	btnEchoInt.frame = CGRectMake(0.0, 0.0, 300.0, 44.0);
+	btnEchoInt.center = CGPointMake(160.0, 44.0);
 	btnEchoInt.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
     [btnEchoInt setTitle:@"echoInt (12)" forState:UIControlStateNormal];
     [btnEchoInt addTarget:self action:@selector(echoInt) forControlEvents:UIControlEventTouchUpInside];
-    btnEchoInt.hidden = YES;
+    btnEchoInt.enabled = NO;
 	[self.view addSubview:btnEchoInt];
+    
+    btnPublish = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	btnPublish.frame = CGRectMake(0.0, 0.0, 300.0, 44.0);
+	btnPublish.center = CGPointMake(160.0, 110);
+	btnPublish.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+    [btnPublish setTitle:@"publish" forState:UIControlStateNormal];
+    [btnPublish addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
+    btnPublish.enabled = NO;
+	[self.view addSubview:btnPublish];
+    
+    btnPlay = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	btnPlay.frame = CGRectMake(0.0, 0.0, 300.0, 44.0);
+	btnPlay.center = CGPointMake(160.0, 176.0);
+	btnPlay.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+    [btnPlay setTitle:@"play" forState:UIControlStateNormal];
+    [btnPlay addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
+    btnPlay.enabled = NO;
+	[self.view addSubview:btnPlay];
+
     
     isRTMPS = NO;
 	alerts = 100;
