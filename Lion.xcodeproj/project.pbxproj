@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7392C9716371CCD002E035E /* Building Media Stream Apps.docx in Resources */ = {isa = PBXBuildFile; fileRef = F7392C8816371CCD002E035E /* Building Media Stream Apps.docx */; };
+		F7392C9816371CCD002E035E /* Media Library for iOS User Guide.docx in Resources */ = {isa = PBXBuildFile; fileRef = F7392C8916371CCD002E035E /* Media Library for iOS User Guide.docx */; };
+		F7392C9916371CCD002E035E /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C8F16371CCD002E035E /* libavcodec.a */; };
+		F7392C9A16371CCD002E035E /* libavdevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9016371CCD002E035E /* libavdevice.a */; };
+		F7392C9B16371CCD002E035E /* libavfilter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9116371CCD002E035E /* libavfilter.a */; };
+		F7392C9C16371CCD002E035E /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9216371CCD002E035E /* libavformat.a */; };
+		F7392C9D16371CCD002E035E /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9316371CCD002E035E /* libavutil.a */; };
+		F7392C9E16371CCD002E035E /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9416371CCD002E035E /* libswresample.a */; };
+		F7392C9F16371CCD002E035E /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9516371CCD002E035E /* libswscale.a */; };
+		F7392CA016371CCD002E035E /* MediaLibiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7392C9616371CCD002E035E /* MediaLibiOS.a */; };
 		F7DBF2D7163201C20094F570 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2D6163201C20094F570 /* UIKit.framework */; };
 		F7DBF2D9163201C20094F570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2D8163201C20094F570 /* Foundation.framework */; };
 		F7DBF2DB163201C20094F570 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2DA163201C20094F570 /* CoreGraphics.framework */; };
@@ -26,6 +36,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F7392C8816371CCD002E035E /* Building Media Stream Apps.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Building Media Stream Apps.docx"; sourceTree = "<group>"; };
+		F7392C8916371CCD002E035E /* Media Library for iOS User Guide.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Media Library for iOS User Guide.docx"; sourceTree = "<group>"; };
+		F7392C8B16371CCD002E035E /* BroadcastStreamClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastStreamClient.h; sourceTree = "<group>"; };
+		F7392C8C16371CCD002E035E /* MediaConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaConstants.h; sourceTree = "<group>"; };
+		F7392C8D16371CCD002E035E /* MediaStreamPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaStreamPlayer.h; sourceTree = "<group>"; };
+		F7392C8E16371CCD002E035E /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
+		F7392C8F16371CCD002E035E /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavcodec.a; sourceTree = "<group>"; };
+		F7392C9016371CCD002E035E /* libavdevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavdevice.a; sourceTree = "<group>"; };
+		F7392C9116371CCD002E035E /* libavfilter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavfilter.a; sourceTree = "<group>"; };
+		F7392C9216371CCD002E035E /* libavformat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavformat.a; sourceTree = "<group>"; };
+		F7392C9316371CCD002E035E /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavutil.a; sourceTree = "<group>"; };
+		F7392C9416371CCD002E035E /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswresample.a; sourceTree = "<group>"; };
+		F7392C9516371CCD002E035E /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswscale.a; sourceTree = "<group>"; };
+		F7392C9616371CCD002E035E /* MediaLibiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = MediaLibiOS.a; sourceTree = "<group>"; };
 		F7DBF2D2163201C20094F570 /* Lion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DBF2D6163201C20094F570 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F7DBF2D8163201C20094F570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,15 +99,61 @@
 				F7DBF2D9163201C20094F570 /* Foundation.framework in Frameworks */,
 				F7DBF2DB163201C20094F570 /* CoreGraphics.framework in Frameworks */,
 				F7DBF31616320DDF0094F570 /* CommLibiOS.a in Frameworks */,
+				F7392C9916371CCD002E035E /* libavcodec.a in Frameworks */,
+				F7392C9A16371CCD002E035E /* libavdevice.a in Frameworks */,
+				F7392C9B16371CCD002E035E /* libavfilter.a in Frameworks */,
+				F7392C9C16371CCD002E035E /* libavformat.a in Frameworks */,
+				F7392C9D16371CCD002E035E /* libavutil.a in Frameworks */,
+				F7392C9E16371CCD002E035E /* libswresample.a in Frameworks */,
+				F7392C9F16371CCD002E035E /* libswscale.a in Frameworks */,
+				F7392CA016371CCD002E035E /* MediaLibiOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F7392C8616371CCD002E035E /* MediaLibiOS+FFmpeg-09 */ = {
+			isa = PBXGroup;
+			children = (
+				F7392C8716371CCD002E035E /* doc */,
+				F7392C8A16371CCD002E035E /* include */,
+				F7392C8F16371CCD002E035E /* libavcodec.a */,
+				F7392C9016371CCD002E035E /* libavdevice.a */,
+				F7392C9116371CCD002E035E /* libavfilter.a */,
+				F7392C9216371CCD002E035E /* libavformat.a */,
+				F7392C9316371CCD002E035E /* libavutil.a */,
+				F7392C9416371CCD002E035E /* libswresample.a */,
+				F7392C9516371CCD002E035E /* libswscale.a */,
+				F7392C9616371CCD002E035E /* MediaLibiOS.a */,
+			);
+			path = "MediaLibiOS+FFmpeg-09";
+			sourceTree = "<group>";
+		};
+		F7392C8716371CCD002E035E /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				F7392C8816371CCD002E035E /* Building Media Stream Apps.docx */,
+				F7392C8916371CCD002E035E /* Media Library for iOS User Guide.docx */,
+			);
+			path = doc;
+			sourceTree = "<group>";
+		};
+		F7392C8A16371CCD002E035E /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F7392C8B16371CCD002E035E /* BroadcastStreamClient.h */,
+				F7392C8C16371CCD002E035E /* MediaConstants.h */,
+				F7392C8D16371CCD002E035E /* MediaStreamPlayer.h */,
+				F7392C8E16371CCD002E035E /* VideoPlayer.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		F7DBF2C7163201C20094F570 = {
 			isa = PBXGroup;
 			children = (
+				F7392C8616371CCD002E035E /* MediaLibiOS+FFmpeg-09 */,
 				F7DBF30116320DDF0094F570 /* CommLibiOS */,
 				F7DBF2DC163201C20094F570 /* Lion */,
 				F7DBF2D5163201C20094F570 /* Frameworks */,
@@ -237,6 +307,8 @@
 				F7DBF31716320DDF0094F570 /* Communication Library for iOS User Guide.pdf in Resources */,
 				F7DBF31816320DDF0094F570 /* WeborbClient Class Reference.odt in Resources */,
 				F7DBF32016320F470094F570 /* ViewController.xib in Resources */,
+				F7392C9716371CCD002E035E /* Building Media Stream Apps.docx in Resources */,
+				F7392C9816371CCD002E035E /* Media Library for iOS User Guide.docx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +406,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/CommLibiOS\"",
+					"\"$(SRCROOT)/MediaLibiOS+FFmpeg-09\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -349,6 +422,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/CommLibiOS\"",
+					"\"$(SRCROOT)/MediaLibiOS+FFmpeg-09\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

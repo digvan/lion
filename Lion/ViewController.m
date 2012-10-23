@@ -65,7 +65,7 @@
 	// set call parameters
 	NSMutableArray *args = [NSMutableArray array];
 	NSString *method = @"echoInt";
-	[args addObject:[NSNumber numberWithInt:12]];	
+	[args addObject:[NSNumber numberWithInt:20]];
 	// send invoke
 	[socket invoke:method withArgs:args responder:[AsynCall call:self method:@selector(onEchoInt:)]];
 }
@@ -134,9 +134,9 @@
     NSString *url = nil;
 
 #ifdef __i386__
-    url = @"rtmp://localhost:1935/live";
+    url = @"rtmp://localhost:1935/Live_Broadcast";
 #else
-    url = @"rtmp://192.168.19.48:1935/live";
+    url = @"rtmp://192.168.112.108:1935/Live_Broadcast";
 #endif
 
     if (socket)
