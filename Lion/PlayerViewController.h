@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "MediaStreamPlayer.h"
 
+@class StubhubStream;
 @interface PlayerViewController : UIViewController <UIAlertViewDelegate, UITextFieldDelegate, IMediaStreamEvent>
 {    
     MediaStreamPlayer       *player;
     IBOutlet UIImageView    *previewView;    
 }
+
+@property (nonatomic, strong) RTMPClient	*socket;
+@property (nonatomic, strong) StubhubStream* stream;
 @end

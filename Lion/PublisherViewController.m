@@ -9,13 +9,15 @@
 #import "PublisherViewController.h"
 #import "DEBUG.h"
 #import "StreamConfig.h"
+#import "StubhubStream.h"
 
 @interface PublisherViewController ()
 
 @end
 
 @implementation PublisherViewController
-
+@synthesize stream;
+@synthesize socket;
 
 #pragma mark -
 #pragma mark  View lifecycle
@@ -27,6 +29,8 @@
     //[DebLog setIsActive:YES];
     [self doConnect];
 }
+
+
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -58,21 +62,69 @@
     upstream = [[BroadcastStreamClient alloc] init:BROADCAST_URL resolution:RESOLUTION_LOW];
     upstream.delegate = self;
     [upstream setPreviewLayer:previewView orientation:AVCaptureVideoOrientationPortrait];
-    [upstream stream:STREAM_NAME publishType:PUBLISH_LIVE];
+    [upstream stream:self.stream.streamID publishType:PUBLISH_LIVE];
 }
 
 -(void)doDisconnect
 {
-    
+    [self unregisterBroadcaster:self.stream.streamID];
+    upstream.delegate = nil;
     [upstream disconnect];
     upstream = nil;
     
     btnToggle.enabled = NO;
-    btnPublish.title = @"Start";
-    btnPublish.enabled = NO;
     previewView.hidden = YES;
-
 }
+
+#pragma mark - register/unregister
+
+-(void)onRegisterBroadcaster:(id)result {
+    
+    NSLog(@"onRegisterBroadcaster = %@\n", result);
+    
+    //[self showAlert:[NSString stringWithFormat:@"onRegisterBroadcaster = %@\n", result]];
+}
+
+
+
+-(void)registerBroadcaster:(NSString*)streamID withName:(NSString*)streamName
+{
+    printf(" SEND ----> registerBroadcaster\n");
+	
+	// set call parameters
+	NSMutableArray *args = [NSMutableArray array];
+	NSString *method = @"registerBroadcaster";
+	[args addObject:streamID];
+    [args addObject:streamName];
+    
+	// send invoke
+	[self.socket invoke:method withArgs:args responder:[AsynCall call:self method:@selector(onRegisterBroadcaster:)]];
+}
+
+
+-(void)onUnRegisterBroadcaster:(id)result {
+    
+    NSLog(@"onUnRegisterBroadcaster = %@\n", result);
+    
+    //[self showAlert:[NSString stringWithFormat:@"onRegisterBroadcaster = %@\n", result]];
+}
+
+
+
+-(void)unregisterBroadcaster:(NSString*)streamID
+{
+    printf(" SEND ----> unregisterBroadcaster\n");
+	
+	// set call parameters
+	NSMutableArray *args = [NSMutableArray array];
+	NSString *method = @"unregisterBroadcaster";
+	[args addObject:streamID];
+    
+	// send invoke
+	[self.socket invoke:method withArgs:args responder:[AsynCall call:self method:@selector(onUnRegisterBroadcaster:)]];
+}
+
+
 
 #pragma mark -
 #pragma mark Public Methods 
@@ -122,16 +174,13 @@
             
             [self publishControl:nil];
             previewView.hidden = NO;
-            
-            btnPublish.enabled = YES;
-            
+            [self registerBroadcaster:self.stream.streamID withName:self.stream.streamName];
             break;
            
         }
             
         case STREAM_PAUSED: {
             
-            btnPublish.title = @"Start";
             btnToggle.enabled = NO;
             
             break;
@@ -139,7 +188,6 @@
             
         case STREAM_PLAYING: {
             
-            btnPublish.title = @"Pause";
             btnToggle.enabled = YES;
             
             break;

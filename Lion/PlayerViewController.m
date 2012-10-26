@@ -10,22 +10,31 @@
 #import "VideoPlayer.h"
 #import "DEBUG.h"
 #import "StreamConfig.h"
+#import "StubhubStream.h"
 
 @interface PlayerViewController ()
 
 @end
 
 @implementation PlayerViewController
+@synthesize stream;
+@synthesize socket;
 
 #pragma mark -
 #pragma mark  View lifecycle
+
 
 -(void)viewDidLoad {
     
     [super viewDidLoad];
     self.title = @"Playing..";
-    //[DebLog setIsActive:YES];
     [self doConnect];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self doDisconnect];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -50,14 +59,16 @@
     player.delegate = self;
     player.player = _player;
     player.isSynchronization = YES;
-    [player stream:STREAM_NAME];    
+    [player stream:self.stream.streamID];
 }
 
 -(void)doDisconnect {
     
+    player.delegate = nil;
     [player disconnect];
     player = nil;
-    previewView.hidden = YES;    
+    previewView.hidden = YES;
+    [self unregisterClient];
 }
 
 #pragma mark -
@@ -88,6 +99,7 @@
             
             [player start];
             previewView.hidden = NO;
+            [self registerClient];
             break;
             
         }
@@ -122,6 +134,49 @@
     [self showAlert:(code == -1) ? 
      [NSString stringWithFormat:@"Unable to connect to the server. Make sure the hostname/IP address and port number are valid\n"] : 
      [NSString stringWithFormat:@"connectFailedEvent: %@ \n", description]];    
+}
+
+#pragma mark - register/unregister
+
+-(void)onRegisterClient:(id)result {
+    
+    NSLog(@"onRegisterClient = %@\n", result);
+    
+    //[self showAlert:[NSString stringWithFormat:@"onRegisterClient = %@\n", result]];
+}
+
+
+
+-(void)registerClient
+{
+    printf(" SEND ----> registerClient\n");
+	
+	// set call parameters
+	NSString *method = @"registerClient";
+    
+	// send invoke
+	[self.socket invoke:method withArgs:nil responder:[AsynCall call:self method:@selector(onRegisterClient:)]];
+}
+
+
+-(void)onUnregisterClient:(id)result {
+    
+    NSLog(@"onUnregisterClient = %@\n", result);
+    
+    //[self showAlert:[NSString stringWithFormat:@"onUnregisterClient = %@\n", result]];
+}
+
+
+
+-(void)unregisterClient
+{
+    printf(" SEND ----> unregisterClient\n");
+	
+	// set call parameters
+	NSString *method = @"unregisterClient";
+    
+	// send invoke
+	[self.socket invoke:method withArgs:nil responder:[AsynCall call:self method:@selector(onUnregisterClient:)]];
 }
 
 @end

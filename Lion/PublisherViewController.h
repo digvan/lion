@@ -9,14 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "BroadcastStreamClient.h"
 
+@class StubhubStream;
 @interface PublisherViewController : UIViewController <UITextFieldDelegate, IMediaStreamEvent> {
     
-    BroadcastStreamClient   *upstream;
-    
+    BroadcastStreamClient* upstream;
+
     IBOutlet UIView         *previewView;
     IBOutlet UIBarButtonItem *btnToggle;
-    IBOutlet UIBarButtonItem *btnPublish;
 }
+
+@property (nonatomic, strong) RTMPClient	*socket;
+@property (nonatomic, strong) StubhubStream* stream;
 
 -(IBAction)publishControl:(id)sender;
 -(IBAction)camerasToggle:(id)sender;

@@ -27,6 +27,7 @@
 		F7392CC916374D6A002E035E /* PublisherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7392CC816374D6A002E035E /* PublisherViewController.xib */; };
 		F7392CD016374DDE002E035E /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7392CCF16374DDE002E035E /* PlayerViewController.xib */; };
 		F7392CD116374F37002E035E /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7392CC616374D1C002E035E /* PlayerViewController.m */; };
+		F764502D163B1AFA0087C4B4 /* StubhubStream.m in Sources */ = {isa = PBXBuildFile; fileRef = F764502C163B1AFA0087C4B4 /* StubhubStream.m */; };
 		F7DBF2D7163201C20094F570 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2D6163201C20094F570 /* UIKit.framework */; };
 		F7DBF2D9163201C20094F570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2D8163201C20094F570 /* Foundation.framework */; };
 		F7DBF2DB163201C20094F570 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DBF2DA163201C20094F570 /* CoreGraphics.framework */; };
@@ -73,6 +74,8 @@
 		F7392CC716374D6A002E035E /* PublisherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublisherViewController.h; sourceTree = "<group>"; };
 		F7392CC816374D6A002E035E /* PublisherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublisherViewController.xib; sourceTree = "<group>"; };
 		F7392CCF16374DDE002E035E /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
+		F764502B163B1AFA0087C4B4 /* StubhubStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StubhubStream.h; sourceTree = "<group>"; };
+		F764502C163B1AFA0087C4B4 /* StubhubStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StubhubStream.m; sourceTree = "<group>"; };
 		F7DBF2D2163201C20094F570 /* Lion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DBF2D6163201C20094F570 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F7DBF2D8163201C20094F570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -220,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				F7392CB01637480A002E035E /* StreamConfig.h */,
+				F764502B163B1AFA0087C4B4 /* StubhubStream.h */,
+				F764502C163B1AFA0087C4B4 /* StubhubStream.m */,
 				F7DBF2E5163201C20094F570 /* AppDelegate.h */,
 				F7DBF2E6163201C20094F570 /* AppDelegate.m */,
 				F7DBF31B16320EF50094F570 /* HomeViewController.h */,
@@ -368,6 +373,7 @@
 				F7DBF2E7163201C20094F570 /* AppDelegate.m in Sources */,
 				F7DBF31D16320EF50094F570 /* HomeViewController.m in Sources */,
 				F7392CAF163747CE002E035E /* PublisherViewController.m in Sources */,
+				F764502D163B1AFA0087C4B4 /* StubhubStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +455,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lion/Lion-Prefix.pch";
 				INFOPLIST_FILE = "Lion/Lion-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/CommLibiOS\"",
@@ -465,6 +472,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lion/Lion-Prefix.pch";
 				INFOPLIST_FILE = "Lion/Lion-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/CommLibiOS\"",

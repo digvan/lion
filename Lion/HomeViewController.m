@@ -13,123 +13,133 @@
 #import "StreamConfig.h"
 #import "PublisherViewController.h"
 #import "PlayerViewController.h"
+#import "StubhubStream.h"
 
 #define BARBUTTON(TITLE, SELECTOR) [[UIBarButtonItem alloc] initWithTitle:TITLE style:UIBarButtonItemStylePlain target:self action:SELECTOR]
 
-#define STATUS_PENDING 0x01
-//#define WOWZA_IP @"10.80.188.21"
-#define WOWZA_IP @"localhost"
-
 @implementation HomeViewController
+@synthesize btnPublish;
+@synthesize streamNameTextField;
+@synthesize availableStreams;
+@synthesize availableStreamsTableView;
+@synthesize socket;
 
 #pragma mark -
 #pragma mark Private Methods 
 
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.socket = nil;
+    isConnected = NO;
+    return self;
+}
 -(void)showAlert:(NSString *)message {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Receive" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-	alerts++;
-	av.tag = alerts;
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:message message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [av show];
-}
-
-// BIG DATA - ARRAY OF BYTES
-
--(NSData *)bigData {
-    
-    int len = 100000;
-    char *buf = malloc(len);
-    
-    for (int i = 0; i < len; i++)
-        buf[i] = (char)i%256;
-    
-    NSData *data = [NSData dataWithBytes:buf length:len];
-    
-    free(buf);
-    
-    return data;
-}
-
-// CALLBACKS
-
--(void)onEchoInt:(id)result {
-    
-    NSLog(@"onEchoInt = %@\n", result);
-    
-    [self showAlert:[NSString stringWithFormat:@"onEchoInt = %@\n", result]];
-}
-
-
-// INVOKE
-
--(void)echoInt {	
-	
-	printf(" SEND ----> echoInt\n");
-	
-	// set call parameters
-	NSMutableArray *args = [NSMutableArray array];
-	NSString *method = @"echoInt";
-	[args addObject:[NSNumber numberWithInt:20]];
-	// send invoke
-	[socket invoke:method withArgs:args responder:[AsynCall call:self method:@selector(onEchoInt:)]];
 }
 
 // ACTIONS
 
 -(void)socketConnected {
     
-    state = 1;
+    isConnected = YES;
     self.navigationItem.rightBarButtonItem = BARBUTTON(@"Disconnect", @selector(doDisconnect:));    
-    btnEchoInt.enabled = YES;
     btnPublish.enabled = YES;
-    btnPlay.enabled = YES;
+    btnPublish.alpha = 1.0;
+    streamNameTextField.enabled = YES;
+    streamNameTextField.alpha = 1.0;
+    availableStreamsTableView.alpha = 1.0;
+    availableStreamsTableView.userInteractionEnabled = YES;
+    
+    [self getBroadcasters];
 }
 
 -(void)socketDisconnected {
-    
-    state = 0;
-	self.title = @"Home";
+    isConnected = NO;
+	self.title = @"Stubhub Live";
 	self.navigationItem.rightBarButtonItem = BARBUTTON(@"Connect", @selector(doConnect:));
-    btnEchoInt.enabled = NO;
     btnPublish.enabled = NO;
-    btnPlay.enabled = NO;
+    btnPublish.alpha = 0.8;
+
+    streamNameTextField.enabled = NO;
+    streamNameTextField.alpha = 0.8;
+    
+    availableStreamsTableView.alpha = 0.8;
+    availableStreamsTableView.userInteractionEnabled = NO;
 }
 
 -(void)doConnect:(id)sender {				
     
     if (socket)
-        [socket connect:BROADCAST_URL];
+        [self.socket connect:BROADCAST_URL];
     else {
-        socket = [[RTMPClient alloc] init:BROADCAST_URL];
+        self.socket = [[RTMPClient alloc] init:BROADCAST_URL];
         socket.delegate = self;
         [socket connect];
     }
 }
 
+-(void)onGetBroadcasters:(NSArray*)result {
+    
+    NSLog(@"onGetBroadcasters = %@\n", result);
+    //[self showAlert:[NSString stringWithFormat:@"onGetBroadcasters = %@\n", result]];
+    self.availableStreams = [NSMutableArray arrayWithCapacity:result.count];
+    
+    for (NSDictionary* streamDict in result) {
+        StubhubStream* stream = [StubhubStream new];
+        stream.streamID = [streamDict valueForKey:@"streamID"];
+        stream.streamName = [streamDict valueForKey:@"streamName"];
+        [self.availableStreams addObject:stream];
+    }
+    [self.availableStreamsTableView reloadData];
+}
+
+
+
+-(void)getBroadcasters
+{
+    printf(" SEND ----> registerBroadcaster\n");
+	
+	// set call parameters
+	NSString *method = @"getBroadcasters";
+	// send invoke
+	[socket invoke:method withArgs:nil responder:[AsynCall call:self method:@selector(onGetBroadcasters:)]];
+}
+
+
 -(void)doDisconnect:(id)sender {	
     
-    if (state == 0) 
-        return;
-    
     [self socketDisconnected];
-    //[socket release];
     socket = nil;
 }
 
--(void)doProtocol {
-    isRTMPS = (isRTMPS)?NO:YES;    
-}
-
--(void)publish
+-(IBAction)publish:(id)sender
 {
-    PublisherViewController* controller = [[PublisherViewController alloc] initWithNibName:@"PublishViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
-}
+#ifdef __i386__
+    [self showAlert:@"No broadcasting from iPhone Simulator!"];
+#else
+    if ([self.streamNameTextField.text isEqualToString:@""]) {
+        [self showAlert:@"Please enter a stream name!"];
+    }
+    else
+    {
+        [self.streamNameTextField resignFirstResponder];
 
-
--(void)play
-{
-    PlayerViewController* controller = [[PlayerViewController alloc] initWithNibName:@"PlayerViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
+        CFUUIDRef theUUID = CFUUIDCreate(NULL);
+        NSString* streamID = [NSString stringWithFormat:@"%@.stream",(__bridge NSString *)CFUUIDCreateString(NULL, theUUID)];
+        
+        StubhubStream* streamToPublish = [StubhubStream new];
+        streamToPublish.streamID = streamID;
+        streamToPublish.streamName = self.streamNameTextField.text;
+        PublisherViewController* controller = [[PublisherViewController alloc] initWithNibName:@"PublisherViewController" bundle:nil];
+        controller.socket = self.socket;
+        controller.stream = streamToPublish;
+        
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+#endif
 }
 
 
@@ -143,44 +153,9 @@
     [DebLog setIsActive:YES];
 
     self.title = @"Home";
-    //
 	self.navigationItem.rightBarButtonItem = BARBUTTON(@"Connect", @selector(doConnect:));
-    
-	//buttons
-	btnEchoInt = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	btnEchoInt.frame = CGRectMake(0.0, 0.0, 300.0, 44.0);
-	btnEchoInt.center = CGPointMake(160.0, 44.0);
-	btnEchoInt.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    [btnEchoInt setTitle:@"echoInt (12)" forState:UIControlStateNormal];
-    [btnEchoInt addTarget:self action:@selector(echoInt) forControlEvents:UIControlEventTouchUpInside];
-    btnEchoInt.enabled = NO;
-	[self.view addSubview:btnEchoInt];
-    
-    btnPublish = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	btnPublish.frame = CGRectMake(0.0, 0.0, 300.0, 44.0);
-	btnPublish.center = CGPointMake(160.0, 110);
-	btnPublish.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    [btnPublish setTitle:@"publish" forState:UIControlStateNormal];
-    [btnPublish addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
-    btnPublish.enabled = NO;
-	[self.view addSubview:btnPublish];
-    
-    btnPlay = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	btnPlay.frame = CGRectMake(0.0, 0.0, 300.0, 44.0);
-	btnPlay.center = CGPointMake(160.0, 176.0);
-	btnPlay.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    [btnPlay setTitle:@"play" forState:UIControlStateNormal];
-    [btnPlay addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
-    btnPlay.enabled = NO;
-	[self.view addSubview:btnPlay];
-
-    
-    isRTMPS = NO;
-	alerts = 100;
-	state = 0;
     socket = nil;
-
-    // Do any additional setup after loading the view, typically from a nib.
+    [self socketDisconnected];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -235,16 +210,73 @@
     
     
     NSString *method = [call getServiceMethodName];
+    
+    if ([method isEqualToString:@"availableStreamsUpdate"])
+    {
+        [self getBroadcasters];
+    }
+    
     NSArray *args = [call getArguments];
     int invokeId = [call getInvokeId];
     id result = (args.count) ? [args objectAtIndex:0] : nil;
     
     NSLog(@" $$$$$$ <IRTMPClientDelegate>> resultReceived <---- status=%d, invokeID=%d, method='%@' arguments=%@\n", status, invokeId, method, result);
-    
-    if (status != STATUS_PENDING) // this call is not a server response
-        return;
-    
-    [self showAlert:[NSString stringWithFormat:@"'%@': arguments = %@\n", method, result]];    
+//    [self showAlert:[NSString stringWithFormat:@"'%@': arguments = %@\n", method, result]];
 }
+
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Available Streams";
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    if (isConnected && availableStreams.count == 0) {
+        return 1;
+    }
+    return availableStreams.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    
+    if (isConnected && availableStreams.count == 0) {
+        cell.textLabel.text = @"No available streams";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else
+    {
+        StubhubStream* stream = [availableStreams objectAtIndex:indexPath.row];
+        cell.textLabel.text = stream.streamName;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (isConnected == availableStreams.count >0) {
+        PlayerViewController* controller = [[PlayerViewController alloc] initWithNibName:@"PlayerViewController" bundle:nil];
+        controller.stream = [self.availableStreams objectAtIndex:indexPath.row];
+        controller.socket = self.socket;
+        [self.navigationController pushViewController:controller animated:YES];
+
+    }
+}
+
 
 @end
