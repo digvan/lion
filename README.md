@@ -1,4 +1,4 @@
 lion
 ====
 
-hello lion what!?
+hello lion JSON
